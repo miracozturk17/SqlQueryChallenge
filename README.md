@@ -1,2 +1,2 @@
 # SqlQuerryChallenge
-Kisisel olarak edindigim,uyguladıgım ve kullandıgım yontemler ve sorguları iceren mini egzersiz serisi.
+Kisisel olarak edindigim,uyguladıgım ve kullandıgım yontemleri ayrıca sorguları iceren mini egzersiz serisi.
