@@ -1,0 +1,107 @@
+/*
+BAZEN MEVCUT GIRILEN SAYISAL IFADE OKUNUS BAGLAMINDA YAZIYA CEVRILMESI GEREKEBILIR.
+*/
+
+--ONCELIKLE BU ISLEMI BIR FONKSIYON UZERINDEN SAGLAMAMIZ GEREKIYOR.
+--MEVCUT SQL SORGUSU;
+CREATE FUNCTION Sayiyi_Yaziya_Cevirme(
+ @SAYI BIGINT,
+ @BUYUKHARF BIT
+)
+RETURNS NVARCHAR(MAX)
+BEGIN
+
+DECLARE @YaziIleSayi NVARCHAR(MAX)
+SET @YaziIleSayi = N''
+
+DECLARE @SayiMetin VARCHAR(100)
+SET @SayiMetin = CAST(@SAYI AS VARCHAR(100))
+
+DECLARE @ToplamBasamak SMALLINT
+SET @ToplamBasamak = LEN(@SayiMetin)
+
+DECLARE @Basamak SMALLINT
+DECLARE @Rakam TINYINT
+
+DECLARE @i SMALLINT
+SET @i = 0
+
+WHILE @i < @ToplamBasamak
+BEGIN
+ SET @Basamak = @ToplamBasamak - @i
+ SET @i = @i + 1
+--SOLDAN BASLAYARAK SIRASI ILE RAKAMLARI OKUMASINI SAGLIYORUZ.
+ SET @Rakam = SUBSTRING(@SayiMetin, @i, 1)
+
+ SELECT
+  @YaziIleSayi = @YaziIleSayi +
+--BASAMAK DEGERINNI BAZ ALARAK RAKAMI OLUSTURUYOR.
+  CASE @Rakam
+  WHEN 0 THEN N''
+  WHEN 1 THEN
+   CASE @Basamak % 3 WHEN 0 THEN N'yüz' WHEN 2 THEN N'on' WHEN 1 THEN
+    CASE WHEN @ToplamBasamak = 4 and @i = 1 THEN N'' ELSE
+     CASE WHEN @i = @ToplamBasamak THEN N'bir' ELSE
+      CASE WHEN SUBSTRING(@SayiMetin, @i-2, 2) = '00'
+       THEN N'' ELSE N'bir'
+      END
+     END
+    END
+   END
+  WHEN 2 THEN
+   CASE @Basamak % 3
+    WHEN 0 THEN N'iki yüz' WHEN 2 THEN N'yirmi' WHEN 1 THEN N'iki' END
+  WHEN 3 THEN
+   CASE @Basamak % 3
+    WHEN 0 THEN N'üç yüz' WHEN 2 THEN N'otuz' WHEN 1 THEN N'üç' END
+  WHEN 4 THEN
+   CASE @Basamak % 3
+    WHEN 0 THEN N'dört yüz' WHEN 2 THEN N'kýrk' WHEN 1 THEN N'dört' END
+  WHEN 5 THEN
+   CASE @Basamak % 3
+    WHEN 0 THEN N'beþ yüz' WHEN 2 THEN N'elli' WHEN 1 THEN N'beþ' END
+  WHEN 6 THEN
+   CASE @Basamak % 3
+    WHEN 0 THEN N'altý yüz' WHEN 2 THEN N'altmýþ' WHEN 1 THEN N'altý' END
+  WHEN 7 THEN
+   CASE @Basamak % 3
+    WHEN 0 THEN N'yedi yüz' WHEN 2 THEN N'yetmiþ' WHEN 1 THEN N'yedi' END
+  WHEN 8 THEN
+   CASE @Basamak % 3
+    WHEN 0 THEN N'sekiz yüz' WHEN 2 THEN N'seksen' WHEN 1 THEN N'sekiz' END
+  WHEN 9 THEN
+   CASE @Basamak % 3
+    WHEN 0 THEN N'dokuz yüz' WHEN 2 THEN N'doksan' WHEN 1 THEN N'dokuz' END
+  END + SPACE(1) +
+  CASE @Basamak
+   WHEN 4 THEN
+    CASE WHEN SUBSTRING(REVERSE(@SayiMetin), @Basamak, 3) = '000' THEN N'' ELSE N'bin' END
+   WHEN 7 THEN
+    CASE WHEN SUBSTRING(REVERSE(@SayiMetin), @Basamak, 3) = '000' THEN N'' ELSE N'milyon' END
+   WHEN 10 THEN
+    CASE WHEN SUBSTRING(REVERSE(@SayiMetin), @Basamak, 3) = '000' THEN N'' ELSE N'milyar' END
+   WHEN 13 THEN
+    CASE WHEN SUBSTRING(REVERSE(@SayiMetin), @Basamak, 3) = '000' THEN N'' ELSE N'trilyon' END
+   WHEN 16 THEN
+    CASE WHEN SUBSTRING(REVERSE(@SayiMetin), @Basamak, 3) = '000' THEN N'' ELSE N'katrilyon' END
+   ELSE N''
+  END + SPACE(1)
+END
+
+--CEVIRI SIRASINDAKI FAZLALIK BOSLUK KARAKTERLERINI TEMIZLIYORUZ.
+SET @YaziIleSayi = LTRIM(RTRIM(@YaziIleSayi))
+
+WHILE REPLACE(@YaziIleSayi, SPACE(2), SPACE(1)) <> @YaziIleSayi
+BEGIN
+ SELECT @YaziIleSayi = REPLACE(@YaziIleSayi, SPACE(2), SPACE(1))
+END
+
+--METIN BUYUK HARFLERLE ISTENIYORSA UPPER() KULLLANIYORUZ.
+IF @BUYUKHARF = 1
+ SET @YaziIleSayi = UPPER(@YaziIleSayi collate turkish_ci_as)
+
+--SAYININ YAZI ILE ICEREN IFADESININ DEGISKENI TERSINE CEVRILIYOR.
+RETURN @YaziIleSayi
+END
+
+SELECT Sayiyi_Yaziya_Cevirme '14440',1
