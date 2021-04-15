@@ -1,5 +1,6 @@
 /*
 KURULUM GENEL ADIMLARI ICIN;
+https://dev.mysql.com/downloads/connector/odbc/
 https://www.mssqltips.com/sqlservertip/4577/create-a-linked-server-to-mysql-from-sql-server/
 https://www.mssqltips.com/sqlservertip/4570/access-mysql-data-from-sql-server-via-a-linked-server/#:~:text=Create%20a%20SQL%20Server%20Linked,you%20want%20to%20link%20to.
 
