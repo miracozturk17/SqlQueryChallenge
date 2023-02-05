@@ -24,10 +24,10 @@ FROM
 
 /*
 KullaniciMail	             Kullanici	        KullaniciGrubu     FormatliKullaniciGrubu    Domain         FormatliDomain
-admin@miracozturk.com	     admin	            miracozturk.com	   MİRACOZTURK.COM           miracozturk    MİRACOZTURK
-bilgi@miracozturk.com	     bilgi	            miracozturk.com	   MİRACOZTURK.COM	         miracozturk    MİRACOZTURK
-jebelod58@xeiex.com	     jebelod58	        xeiex.com	       XEİEX.COM                 xeiex          XEİEX
-mz@gmail.com	             mz	                gmail.com	       GMAİL.COM                 gmail          GMAİL
-jebelod585@xeiex.com	     jebelod585	        xeiex.com	       XEİEX.COM                 xeiex          XEİEX
-miracles_205_tr@gmail.com   miracles_205_tr    gmail.com	       GMAİL.COM                 gmail          GMAİL
+admin@miracozturk.com	     admin	        miracozturk.com	   MİRACOZTURK.COM           miracozturk    MİRACOZTURK
+bilgi@miracozturk.com	     bilgi	        miracozturk.com	   MİRACOZTURK.COM	     miracozturk    MİRACOZTURK
+jebelod58@xeiex.com	     jebelod58	        xeiex.com	   XEİEX.COM                 xeiex          XEİEX
+mz@gmail.com	             mz	                gmail.com	   GMAİL.COM                 gmail          GMAİL
+jebelod585@xeiex.com	     jebelod585	        xeiex.com	   XEİEX.COM                 xeiex          XEİEX
+miracles_205_tr@gmail.com    miracles_205_tr    gmail.com	   GMAİL.COM                 gmail          GMAİL
 */
