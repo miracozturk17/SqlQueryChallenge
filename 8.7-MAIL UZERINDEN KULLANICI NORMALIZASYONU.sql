@@ -29,5 +29,5 @@ bilgi@miracozturk.com	     bilgi	        miracozturk.com	   MİRACOZTURK.COM	   
 jebelod58@xeiex.com	     jebelod58	        xeiex.com	   XEİEX.COM                 xeiex          XEİEX
 mz@gmail.com	             mz	                gmail.com	   GMAİL.COM                 gmail          GMAİL
 jebelod585@xeiex.com	     jebelod585	        xeiex.com	   XEİEX.COM                 xeiex          XEİEX
-miracles_205_tr@gmail.com   miracles_205_tr    gmail.com	   GMAİL.COM                 gmail          GMAİL
+miracles_205_tr@gmail.com    miracles_205_tr    gmail.com	   GMAİL.COM                 gmail          GMAİL
 */
